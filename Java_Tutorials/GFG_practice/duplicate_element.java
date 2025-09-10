@@ -1,15 +1,20 @@
-import java.util.*;
-public class DuplicateElements {
-    public static void main(String[] args) {
-        int[] arr = {1,2,3,2};
-        HashSet<Integer> set = new HashSet<>();
-        boolean hasDup = false;
-        for(int num : arr){
-            if(!set.add(num)){
-                hasDup = true;
-                break;
+class Geeks {
+    // print the elements which appear more than
+    // once in the array in sorted order
+    public static void SortedDuplicates(int arr[], int n) {
+        Arrays.sort(arr);
+        boolean found = false;
+        for (int i = 1; i < n; i++) {
+            if (arr[i] == arr[i - 1]) {
+                if (i == 1 || arr[i] != arr[i - 2]) {
+                    System.out.print(arr[i] + " ");
+                    found = true;
+                }
             }
         }
-        System.out.println("Contains duplicates: " + hasDup);
+        if (!found) {
+            System.out.print(-1);
+        }
+        System.out.println();
     }
 }
