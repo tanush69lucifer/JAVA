@@ -1,9 +1,15 @@
 import java.util.*;
-public class BalloonEverywhere {
-    public static void main(String[] args) {
-        String word = "balloon";
-        HashSet<Character> set = new HashSet<>();
-        for(char c : word.toCharArray()) set.add(c);
-        System.out.println("Unique balloons needed: " + set.size());
+class Solution {
+    public int maxInstance(String s) {
+        int[] count = new int[26]; 
+        for(char c : s.toCharArray()) {
+            count[c - 'a']++;
+        }
+        int b = count['b' - 'a'];
+        int a = count['a' - 'a'];
+        int l = count['l' - 'a'] / 2;
+        int o = count['o' - 'a'] / 2;
+        int n = count['n' - 'a'];
+        return Math.min(b, Math.min(a, Math.min(l, Math.min(o, n))));
     }
 }
