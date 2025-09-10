@@ -1,18 +1,25 @@
-import java.util.*;
-public class MaxFrequencyWord {
-    public static void main(String[] args) {
-        String sentence = "apple orange apple banana apple orange";
-        String[] words = sentence.split(" ");
-        HashMap<String,Integer> freq = new HashMap<>();
-        for(String w : words) freq.put(w, freq.getOrDefault(w,0)+1);
-        String maxWord = "", word;
-        int maxFreq = 0;
-        for(Map.Entry<String,Integer> e : freq.entrySet()){
-            if(e.getValue() > maxFreq){
-                maxFreq = e.getValue();
-                maxWord = e.getKey();
+class Solution {
+    public String maximumFrequency(String s) {
+        String[] arr = s.split(" ");
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+
+        // Count frequency of each word
+        for (String x : arr) {
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+
+        // Find max frequency
+        int max = Collections.max(map.values());
+        String s_max = "";
+
+        // Find the first word with max frequency (preserving order)
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == max) {
+                s_max = entry.getKey();
+                break;
             }
         }
-        System.out.println("Word with max frequency: " + maxWord);
+
+        return s_max + " " + max;
     }
 }
